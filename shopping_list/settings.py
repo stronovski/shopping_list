@@ -25,6 +25,13 @@ env = environ.Env() # Tambahkan kode berikut
 SECRET_KEY = 'django-insecure-$_%zeu5dgoid3bh9-fo!@fis)bws%qvr4s)zyxtnddlygw=xi='
 PRODUCTION = env.bool('PRODUCTION', False)
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -35,6 +42,8 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'main',
+    'authentication',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'shopping_list.urls'
